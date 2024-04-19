@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us</title>
+    <style>
+        form {
+            margin-top: 20px;
+        }
+        label, input, textarea {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./images/dog1.png" alt="dog logo">
+    <h1>About Us</h1>
+    <p>Is your dog bored in the house?</p>
+    <p>Doggy daycare is a great way for your pet to get stimulation, develop social skills, and make new friends! We have an indoor space with a hypoallergenic mat floor, and a fully fenced outdoor space with water sprinklers in the warmer months.</p>
+    <p>Book your pup for a full day or a half day. We recommend at least one visit per week so your dog can develop friendships and establish a routine. We also offer pick-up and drop-off services for those in the downtown area.</p>
+    <p><strong>Book your complimentary half-day trial today!</strong></p>
+    <img src="./images/dog.jpg" alt="dog logo">
+
+    <img src="./images/dog.jpg" alt="dog logo">
+    <h2>Booking Rate Calculator</h2>
+    <form id="rateCalculator">
+        <label>My pup will come in on:</label>
+        <label><input type="checkbox" name="day" value="Mon"> Mon</label>
+        <label><input type="checkbox" name="day" value="Tue"> Tue</label>
+        <label><input type="checkbox" name="day" value="Wed"> Wed</label>
+        <label><input type="checkbox" name="day" value="Thu"> Thu</label>
+        <label><input type="checkbox" name="day" value="Fri"> Fri</label>
+        <label><input type="radio" name="duration" value="full" checked> Full day</label>
+        <label><input type="radio" name="duration" value="half"> Half day</label>
+        <button type="button" onclick="calculateRate()">Calculate</button>
+        <div>My weekly cost will be $<span id="cost">0</span>.</div>
+        <button type="button" onclick="clearDays()">Clear Days</button>
+    </form>
+    <img src="./images/dog.jpg" alt="dog logo">
+
+    <h2>We'd love to hear from you!</h2>
+    <form action="submit_contact_form.php" method="POST">
+        <label for="name">Your name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Your email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="message">Your message:</label>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function calculateRate() {
+            var days = document.querySelectorAll('input[name="day"]:checked').length;
+            var duration = document.querySelector('input[name="duration"]:checked').value;
+            var rate = duration === "full" ? 50 : 30; // Assuming $50 for full day and $30 for half day
+            var total = days * rate;
+            document.getElementById('cost').textContent = total;
+        }
+
+        function clearDays() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            document.getElementById('cost').textContent = '0';
+        }
+   
+        </script>
+</body>
+</html>
